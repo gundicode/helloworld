@@ -25,4 +25,18 @@ jobs:
           image_version: 'v1.0'
           docker_file: '.'
       - name: Get pre step result output image_pull_url
-        run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}"
+        run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}
+
+      # Checkout the other repository (the one with the YAML manifest)
+      - name: Checkout other repository
+        uses: actions/checkout@v3
+        with:
+          repository: gundicode/argocd-example-apps
+          token: ${{ secrets.REGISTRY_PASSWORD }}
+          path: argocd-example-apps
+
+      # Update the manifest file with the new Docker image tag
+      - name: Update manifest
+        run: |
+          cd argocd-example-apps
+          sed -i 's|image: g0nzzza/guestbook:.*|image: g0nzzza/guestbook:'"$GIT_SHA"'|g' guestbook/guestbook-ui-deployment.yaml
