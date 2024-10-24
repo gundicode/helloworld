@@ -46,9 +46,10 @@ jobs:
       - name: Commit and push changes
         run: |
           pwd
+          cd argocd-example-apps
           ls -lart
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add guestbook/guestbook-ui-deployment.yaml
-          git commit -m "Update image tag to $GIT_SHA"
+          git commit -m "Update image tag to $GITHUB_SHA"
           git push origin main
