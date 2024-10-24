@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: gundicode/argocd-example-apps
-          token: ${{ secrets.REGISTRY_PASSWORD }}
+          #token: ${{ secrets.REGISTRY_PASSWORD }}
           path: argocd-example-apps
 
       # Update the manifest file with the new Docker image tag
