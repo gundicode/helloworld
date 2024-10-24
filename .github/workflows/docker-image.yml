@@ -50,6 +50,8 @@ jobs:
           ls -lart
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git branch -a
           git add guestbook/guestbook-ui-deployment.yaml
+          git status
           git commit -m "Update image tag to $GITHUB_SHA"
           git push origin main
