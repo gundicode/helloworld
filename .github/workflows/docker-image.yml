@@ -38,7 +38,7 @@ jobs:
       # Update the manifest file with the new Docker image tag
       - name: Update manifest
         run: |
-          cd argocd-example-apps
+          cd ../../argocd-example-apps
           sed -i 's|image: g0nzzza/guestbook:.*|image: g0nzzza/guestbook:'"$GITHUB_SHA"'|g' guestbook/guestbook-ui-deployment.yaml
           cat guestbook/guestbook-ui-deployment.yaml
 
